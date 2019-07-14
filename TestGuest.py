@@ -20,7 +20,7 @@ if not os.path.exists(screenshot_folder):
 guest_images = current_url+'/images/Guest'
 if not os.path.exists(guest_images):
     os.mkdir(guest_images)
-class TestNormalUser(unittest.TestCase):
+class TestGuest(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.Chrome(current_url+'/chromedriver.exe')
@@ -32,22 +32,28 @@ class TestNormalUser(unittest.TestCase):
         driver.save_screenshot(guest_images+"/test_01_search_in_browser.png")
     
   
-    def test_02_visit_each_page(self):
+    def test_02a_visit_home_page(self):
        
-        with allure.step('Search_Website'):
-            driver = Search_Website(self,'Reales')
+        driver = Search_Website(self,'Reales')
         ## Home
         with allure.step('Visit Home Page'):
             driver.find_element(By.LINK_TEXT, "Trang chủ").click()
             url = driver.current_url
             self.assertEqual(self.start_url,url)
             driver.save_screenshot(guest_images+"/test_02_visit_home_page.png")
+  
+    def test_02b_visit_About_page(self):
+       
+        driver = Search_Website(self,'Reales')
         ## About
         with allure.step('Visit About Page'):
             driver.find_element(By.LINK_TEXT, "Về chúng tôi").click()
             url = driver.current_url
             self.assertEqual(self.start_url+'about',url)
             driver.save_screenshot(guest_images+"/test_02_visit_about_page.png")
+   
+    def test_02c_visit_News_page(self):
+        driver = Search_Website(self,'Reales')
         ## News
         with allure.step('Visit News Page'):
             driver.find_element(By.LINK_TEXT, "Tin tức").click()
@@ -55,13 +61,18 @@ class TestNormalUser(unittest.TestCase):
             self.assertEqual(self.start_url+'news',url)
             driver.save_screenshot(guest_images+"/test_02_visit_news_page.png")
 
-        ## Estatelistview
+    def test_02d_visit_Estatelistview_page(self):
+       
+        driver = Search_Website(self,'Reales')        ## Estatelistview
         with allure.step('Visit Estatelistview Page'):
             driver.find_element(By.LINK_TEXT, "Danh sách").click()
             url = driver.current_url
             self.assertEqual(self.start_url+'estatelistview',url)
             driver.save_screenshot(guest_images+"/test_02_visit_estatelistview_page.png")
 
+    def test_02e_visit_Agents_page(self):
+       
+        driver = Search_Website(self,'Reales')
         ## Agents
         with allure.step('Visit Agents Page'):
             DanhBa = driver.find_element(By.LINK_TEXT, "Danh bạ")
@@ -72,6 +83,10 @@ class TestNormalUser(unittest.TestCase):
             url = driver.current_url
             self.assertEqual(self.start_url+'agents/1',url)
             driver.save_screenshot(guest_images+"/test_02_visit_agents_page.png")
+
+    def test_02f_visit_Companies_page(self):
+       
+        driver = Search_Website(self,'Reales')
 
         ##Companies
         with allure.step('Visit Companies Page'):
@@ -84,13 +99,18 @@ class TestNormalUser(unittest.TestCase):
             self.assertEqual(self.start_url+'companies/1',url)
             driver.save_screenshot(guest_images+"/test_02_visit_companies_page.png")
 
+    def test_02g_visit_Submit_page(self):
+       
+        driver = Search_Website(self,'Reales')
         ##SubmitPost
         with allure.step('Visit SumitPost Page'):
             driver.find_element(By.LINK_TEXT, "Đăng bài").click()
             driver.save_screenshot(guest_images+"/test_02_visit_submitpost_page.png")
             url = driver.current_url
             self.assertEqual(self.start_url+'notilogin',url)
-
+    def test_02h_visit_Login_page(self):
+       
+        driver = Search_Website(self,'Reales')
         ##Login
         with allure.step('Visit Login Page'):
             driver.find_element(By.LINK_TEXT, "Đăng nhập").click()
@@ -99,9 +119,7 @@ class TestNormalUser(unittest.TestCase):
             driver.save_screenshot(guest_images+"/test_02_visit_login_page.png")
 
     def test_03a_search_posts_without_fill_entries(self):
-
-        with allure.step('Search_Website'):
-            driver = Search_Website(self,'Reales')
+        driver = Search_Website(self,'Reales')
           ## Estatelistview
         with allure.step('Visit Estatelistview Page'):
             driver.find_element(By.LINK_TEXT, "Danh sách").click()
@@ -116,8 +134,7 @@ class TestNormalUser(unittest.TestCase):
 
     def test_03b_search_posts_just_fill_deal(self):
 
-        with allure.step('Search_Website'):
-            driver = Search_Website(self,'Reales')
+        driver = Search_Website(self,'Reales')
           ## Estatelistview
         with allure.step('Visit Estatelistview Page'):
             driver.find_element(By.LINK_TEXT, "Danh sách").click()
@@ -135,8 +152,7 @@ class TestNormalUser(unittest.TestCase):
 
     def test_03c_search_posts_just_fill_type(self):
 
-        with allure.step('Search_Website'):
-            driver = Search_Website(self,'Reales')
+        driver = Search_Website(self,'Reales')
           ## Estatelistview
         with allure.step('Visit Estatelistview Page'):
             driver.find_element(By.LINK_TEXT, "Danh sách").click()
@@ -153,8 +169,7 @@ class TestNormalUser(unittest.TestCase):
             driver.save_screenshot(guest_images+"/test_03c_search_posts_just_fill_type.png")
 
     def test_03d_search_posts_just_fill_province(self):
-        with allure.step('Search_Website'):
-            driver = Search_Website(self,'Reales')
+        driver = Search_Website(self,'Reales')
           ## Estatelistview
         with allure.step('Visit Estatelistview Page'):
             driver.find_element(By.LINK_TEXT, "Danh sách").click()
@@ -172,8 +187,7 @@ class TestNormalUser(unittest.TestCase):
 
     
     def test_04_refer_agentdetail(self):
-        with allure.step('Search_Website'):
-            driver = Search_Website(self,'Reales')
+        driver = Search_Website(self,'Reales')
           ## Agents
         with allure.step('Visit Agents Page'):
             DanhBa = driver.find_element(By.LINK_TEXT, "Danh bạ")
@@ -191,8 +205,7 @@ class TestNormalUser(unittest.TestCase):
             driver.save_screenshot(guest_images+"/test_04_refer_agentdetail.png")
 
     def test_05_refer_companydetail(self):
-        with allure.step('Search_Website'):
-            driver = Search_Website(self,'Reales')
+        driver = Search_Website(self,'Reales')
           ## Agents
         with allure.step('Visit Company Page'):
             DanhBa = driver.find_element(By.LINK_TEXT, "Danh bạ")
