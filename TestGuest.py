@@ -181,8 +181,7 @@ class TestGuest(unittest.TestCase):
         with allure.step('Click Button Tìm Kiếm'):
             driver.find_element_by_xpath("//*[@id='root']/div/div/div[3]/div/div[1]/div/form/div/div/div[8]/button").click()
             time.sleep(1)
-            test=driver.find_elements_by_class_name("ant-message")
-            self.assertFalse(len(test)!=0)
+        
             driver.save_screenshot(guest_images+"/test_03d_search_posts_just_fill_province.png")
 
     

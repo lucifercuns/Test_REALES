@@ -298,7 +298,7 @@ class TestNormalUser(unittest.TestCase):
         with allure.step("Upload Images"):
             inputPic=driver.find_element_by_xpath('//*[@id="root"]/div/div/div[3]/div/div/div/div/form/div[9]/div/div/div/div/input')
             inputPic.location_once_scrolled_into_view
-            inputPic.send_keys("C:/Users/Admin/Desktop/test/pic1.jpg")             
+            inputPic.send_keys(current_url+"/test upload image.jpg")             
             # # inputPic.clear()
             driver.find_element_by_name("submitProperty").location_once_scrolled_into_view   
             time.sleep(2)
